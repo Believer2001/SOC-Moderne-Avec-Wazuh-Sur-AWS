@@ -100,3 +100,115 @@ L'ensemble des composants est isolé au sein d'un VPC (Virtual Private Cloud) un
  ](img/instanceSecuritG.png)
 
  
+ ## Installation de Wazuh-server 
+
+ ```bash
+ sudo apt update && sudo apt -y ugrade 
+ ```
+
+ ![update](img/updateserver.png)
+
+ ```bash
+ Curl -sO  [https://packages.wazuh.com/4.7/wazuh-install.sh](https://packages.wazuh.com/4.7/wazuh-install.sh )
+
+ ```
+ ![telechargement](img/telechargement.png)
+
+
+  ```bash
+ sudo bash wazuh-install.sh -a -i 
+ ```
+ ![installation](img/installation.png)
+
+
+- On peut verifier le status de wazuh-manager
+
+```bash
+ sudo systemctl status wazuh-manager
+ ```
+ 
+ ![alt text](img/verifiWazuhManager.png)
+
+
+- On peut verifier le status de wazuh-dashboard 
+
+```bash
+ sudo systemctl status wazuh-dashboard
+ ```
+ ![alt text](img/verificationWazuhdashboard.png)
+
+- On peut verifier le status de wazuh-indexer 
+
+
+```bash
+ sudo systemctl status wazuh-indexer
+ ```
+
+ ![alt text](img/verificationwazuhindexer.png) 
+
+- On peut verifier  accder a l  'interface web : 
+
+![alt text](img/interfaceWazuh.png) 
+![alt text](img/interfacewazuh1.png)
+
+
+
+
+##  Enrôler le client Linux (Ubuntu) 
+
+ sur l'interface de wazuh serveru on fait:
+![alt text](img/deployLinux.png)
+![alt text](img/deployLinux1.png)
+![alt text](img/deployLinux2.png) 
+- après on execute la commande sur wazuh client linux  pour l installation de l'agent et on   modfie la configuration 
+![alt text](img/editConfig.png) :
+
+- Après on peut vérifier dans sur l'interface que ne nombre d'agent a augmenter
+![alt text](img/deployVerif.png) 
+
+
+## Enrolement du client windows :
+
+- On installe l'agent wazuh sur linux:
+
+![alt text](img/windowsDeploy.png)
+
+![alt text](img/windowsDEeployVerification.png) 
+
+Une fois que nous allons les des agents connecter au serveur, nous pouvons maintenant essayer de simuler des senarios à gérer :
+
+
+## Démo SIEM + EDR : scénarios d’événements à générer
+
+###  Scénario 1 — Tentatives SSH échouées (bruteforce simulé)
+
+Sur Linux-Client (ou depuis une autre machine), fais plusieurs tentatives de login SSH
+invalides :
+
+![alt text](img/forcebrute2.png) 
+![alt text](img/forcebrute1.png)
+ ![alt text](img/forcebrute.png)
+
+ - Resultat sur le dashbaord de wazuh
+ ![alt text](img/resultatforcebrute3.png) 
+ ![alt text](img/resultatforcebrute2.png) 
+ ![alt text](img/resultatforcebrute1.png)
+ ![alt text](img/resultatForcebrute.png)
+
+ - Scénario 2 — Élévation de privilèges :
+
+ ![alt text](img/privilege1.png) 
+ ![alt text](img/privilege.png)
+
+
+- Scénario 3 — Modification fichier sensible (FIM) :
+
+![alt text](img/scenario.png)
+ ![alt text](img/scenario1.png)
+
+
+- Dashbaord 
+![ dashbaord](./img/Dasboard.png)
+
+--- 
+# CONCLUSION 
